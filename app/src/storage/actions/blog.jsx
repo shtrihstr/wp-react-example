@@ -45,7 +45,12 @@ function blogSetFeed(feed) {
     };
 }
 
-
+/**
+ * Load post data (if not loaded)
+ *
+ * @param slug Post slug
+ * @param context Display context (view/feed)
+ */
 export function blogMaybeLoadPost(slug, context = 'view') {
     return function (dispatch, getStore) {
 
@@ -102,6 +107,9 @@ export function blogMaybeLoadPost(slug, context = 'view') {
     }
 }
 
+/**
+ * Load all categories (if not loaded)
+ */
 export function blogMaybeLoadCategories() {
     return function (dispatch, getStore) {
 
@@ -141,7 +149,9 @@ export function blogMaybeLoadCategories() {
     }
 }
 
-
+/**
+ * Load all tags (if not loaded)
+ */
 export function blogMaybeLoadTags() {
     return function (dispatch, getStore) {
 
@@ -181,6 +191,9 @@ export function blogMaybeLoadTags() {
     }
 }
 
+/**
+ * Load all authors (if not loaded)
+ */
 export function blogMaybeLoadAuthors() {
     return function (dispatch, getStore) {
 
@@ -221,7 +234,13 @@ export function blogMaybeLoadAuthors() {
 }
 
 
-
+/**
+ * Load feed (if not loaded)
+ *
+ * @param type Feed type (category, tag, author, etc)
+ * @param filter Slug
+ * @param page Page number
+ */
 export function blogMaybeLoadFeed(type, filter, page) {
     return function (dispatch, getStore) {
         const key = type + ':' + filter;

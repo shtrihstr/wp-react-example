@@ -9,6 +9,7 @@ import Iframe from './Html/Iframe.jsx';
 
 export default class Html extends Component {
 
+    // treemap
     getComponentsRecursive(items) {
         return items.map((item) => {
             if (item.node === 'text') {
@@ -27,6 +28,7 @@ export default class Html extends Component {
         return this.keyIndex;
     }
 
+    // map object to html
     getComponentByNode(item, children) {
         switch (item.node) {
             case 'p':
