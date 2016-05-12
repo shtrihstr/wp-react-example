@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import LazyLoad from 'react-lazyload';
 
-import DefaultNode from './html/DefaultNode.jsx';
-import Paragraph from './html/Paragraph.jsx';
+import DefaultNode from './Html/DefaultNode.jsx';
+import Paragraph from './Html/Paragraph.jsx';
 import Link from './Html/Link.jsx';
 import Image from './Html/Image.jsx';
 import Iframe from './Html/Iframe.jsx';
