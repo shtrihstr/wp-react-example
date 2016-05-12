@@ -11,12 +11,10 @@ export default class Link extends Component {
             content = content[0]; // avoid extra spans
         }
 
-        if (!href) {
-            return null;
-        }
-
+        // convert to relative url
         href = Url.maybeRelative(href);
 
+        // parse other parameters
         let params = {};
         for(let key in this.props) {
             if(key !== 'href') {
@@ -24,9 +22,12 @@ export default class Link extends Component {
             }
         }
 
+        // render react link for internal urls
         if (href.indexOf('/') === 0) {
             return (<RouterLink to={href} {...params}>{content}</RouterLink>);
         }
+
+        // render standard link for external urls
         return (<a href={href} {...params}>{content}</a>);
     }
 }

@@ -8,12 +8,15 @@ export default class Sidebar extends Component {
 
     componentWillMount() {
         const { dispatch } = this.props;
+
+        // load all categories
         dispatch(blogMaybeLoadCategories());
     }
 
     render() {
         const { blog } = this.props;
 
+        // map categories to list with links
         let categoriesNodes = null;
         if (blog.hasOwnProperty('categories') && blog.categories.hasOwnProperty('terms') && blog.categories.terms.length > 0) {
             categoriesNodes = blog.categories.terms.map((term, index) => {

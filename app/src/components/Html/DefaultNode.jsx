@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 export default class DefaultNode extends Component {
     render() {
+        // node exists
         if (!(this.props.item.node in React.DOM)) {
             return null;
         }
@@ -14,20 +15,19 @@ export default class DefaultNode extends Component {
 
         let params = {};
         for(let key in this.props.item.attr) {
+            // style parameter in string is not allowed
             if(key !== 'style') {
                 params[key] = this.props.item.attr[key];
             }
         }
 
         if(content && content.length > 0) {
-            return (
-                <Node {...params}>{content}</Node>
-            );
+            // node with children
+            return (<Node {...params}>{content}</Node>);
         }
         else {
-            return (
-                <Node {...params} />
-            );
+            // node without children
+            return (<Node {...params} />);
         }
     }
 }

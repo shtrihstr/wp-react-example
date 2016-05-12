@@ -19,7 +19,9 @@ export default class Layout extends Component {
                         <div className="footer">
                             <div className="pure-menu pure-menu-horizontal">
                                 <ul>
-                                    <li className="pure-menu-item"><a href="http://github.com/shtrihstr/wp-react-example" className="pure-menu-link">View on GitHub</a></li>
+                                    <li className="pure-menu-item">
+                                        <a href="http://github.com/shtrihstr/wp-react-example" className="pure-menu-link">View on GitHub</a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -30,11 +32,9 @@ export default class Layout extends Component {
         );
     }
 }
-/*
-function select(state) {
-    return {
 
-    };
+function select(state) {
+    return {};
 }
 
-export default connect(select)(Layout);*/
+export default connect(select)(Layout);

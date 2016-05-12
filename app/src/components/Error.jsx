@@ -4,7 +4,7 @@ export default class Error extends Component {
     render() {
         const { code } = this.props;
         let _code = parseInt(code) || 404;
-        let message = "";
+        let message = "Oops. Something went wrong";
         if (_code == 404) {
             message = "Page not found.";
         }

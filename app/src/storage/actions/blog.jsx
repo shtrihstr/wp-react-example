@@ -46,7 +46,7 @@ function blogSetFeed(feed) {
 }
 
 /**
- * Load post data (if not loaded)
+ * Load post data to store (if not loaded)
  *
  * @param slug Post slug
  * @param context Display context (view/feed)
@@ -62,7 +62,7 @@ export function blogMaybeLoadPost(slug, context = 'view') {
             }
         }
 
-        // set loading status
+        // set loading status "in progress"
         dispatch(blogSetPost({
             slug: slug,
             context: context,
@@ -81,9 +81,11 @@ export function blogMaybeLoadPost(slug, context = 'view') {
                     code: 200
                 };
                 post.context = context;
+                // set post data to store
                 dispatch(blogSetPost(post));
             })
             .on('4xx', () => {
+                // set status 404 error
                 dispatch(blogSetPost({
                     slug: slug,
                     context: context,
@@ -94,6 +96,7 @@ export function blogMaybeLoadPost(slug, context = 'view') {
                 }));
             })
             .on('5xx', () => {
+                // set status 503 error
                 dispatch(blogSetPost({
                     slug: slug,
                     context: context,
@@ -108,15 +111,17 @@ export function blogMaybeLoadPost(slug, context = 'view') {
 }
 
 /**
- * Load all categories (if not loaded)
+ * Load all categories to store (if not loaded)
  */
 export function blogMaybeLoadCategories() {
     return function (dispatch, getStore) {
 
+        // if categories are loaded or waiting response
         if (getStore().blog.categories.hasOwnProperty('loading')) {
            return;
         }
 
+        // set loading status "in progress"
         dispatch(blogSetCategories({
             loading: {
                 status: BLOG_LOADING_STATUS_IN_PROGRESS,
@@ -134,9 +139,11 @@ export function blogMaybeLoadCategories() {
                         code: 200
                     }
                 };
+                // set categories to store
                 dispatch(blogSetCategories(categories));
             })
             .on('5xx', () => {
+                // set status 503 error
                 dispatch(blogSetCategories({
                     terms: [],
                     loading: {
@@ -150,15 +157,17 @@ export function blogMaybeLoadCategories() {
 }
 
 /**
- * Load all tags (if not loaded)
+ * Load all tags to store (if not loaded)
  */
 export function blogMaybeLoadTags() {
     return function (dispatch, getStore) {
 
+        // if tags are loaded or waiting response
         if (getStore().blog.tags.hasOwnProperty('loading')) {
             return;
         }
 
+        // set loading status "in progress"
         dispatch(blogSetTags({
             loading: {
                 status: BLOG_LOADING_STATUS_IN_PROGRESS,
@@ -176,9 +185,11 @@ export function blogMaybeLoadTags() {
                         code: 200
                     }
                 };
+                // set tags to store
                 dispatch(blogSetTags(tags));
             })
             .on('5xx', () => {
+                // set status 503 error
                 dispatch(blogSetTags({
                     terms: [],
                     loading: {
@@ -192,15 +203,17 @@ export function blogMaybeLoadTags() {
 }
 
 /**
- * Load all authors (if not loaded)
+ * Load all authors to store (if not loaded)
  */
 export function blogMaybeLoadAuthors() {
     return function (dispatch, getStore) {
 
+        // if authors are loaded or waiting response
         if (getStore().blog.authors.hasOwnProperty('loading')) {
             return;
         }
 
+        // set loading status "in progress"
         dispatch(blogSetAuthors({
             loading: {
                 status: BLOG_LOADING_STATUS_IN_PROGRESS,
@@ -218,9 +231,11 @@ export function blogMaybeLoadAuthors() {
                         code: 200
                     }
                 };
+                // set authors to store
                 dispatch(blogSetAuthors(authors));
             })
             .on('5xx', () => {
+                // set status 503 error
                 dispatch(blogSetAuthors({
                     users: [],
                     loading: {
@@ -235,7 +250,7 @@ export function blogMaybeLoadAuthors() {
 
 
 /**
- * Load feed (if not loaded)
+ * Load feed to store (if not loaded)
  *
  * @param type Feed type (category, tag, author, etc)
  * @param filter Slug
@@ -245,6 +260,7 @@ export function blogMaybeLoadFeed(type, filter, page) {
     return function (dispatch, getStore) {
         const key = type + ':' + filter;
 
+        // if feed are loaded or waiting response or page bigger then maximum
         if (getStore().blog.feeds.hasOwnProperty(key)) {
             const feed = getStore().blog.feeds[key];
             let lastPage = feed.page || 0;
@@ -254,6 +270,7 @@ export function blogMaybeLoadFeed(type, filter, page) {
             }
         }
 
+        // set endpoint url by feed type
         let url = '/wp-json/api/v1/posts-by/';
         if (['category', 'tag', 'author', 'date'].indexOf(type) !== -1) {
             url = url + type + '/' + filter + '?page=' + page;
@@ -266,6 +283,7 @@ export function blogMaybeLoadFeed(type, filter, page) {
             return;
         }
 
+        // set loading status "in progress"
         dispatch(blogSetFeed({
             key: key,
             loading: {
@@ -292,10 +310,11 @@ export function blogMaybeLoadFeed(type, filter, page) {
                         }
                     }
                 };
-
+                // set feed data to store
                 dispatch(blogSetFeed(feed));
             })
             .on('4xx', () => {
+                // set status 404 error
                 dispatch(blogSetFeed({
                     key: key,
                     loading: {
@@ -307,6 +326,7 @@ export function blogMaybeLoadFeed(type, filter, page) {
                 }));
             })
             .on('5xx', () => {
+                // set status 503 error
                 dispatch(blogSetFeed({
                     key: key,
                     loading: {
