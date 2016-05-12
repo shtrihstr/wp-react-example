@@ -50,11 +50,11 @@ export default class Author extends Component {
      */
     getCurrentAuthor() {
         const { blog } = this.props;
-        if (blog.authors.terms) {
+        if (blog.authors.users) {
             const slug = this.getSlug();
-            for (let i in blog.authors.terms) {
-                if (blog.authors.terms[i].slug == slug) {
-                    return blog.authors.terms[i];
+            for (let i in blog.authors.users) {
+                if (blog.authors.users[i].slug == slug) {
+                    return blog.authors.users[i];
                 }
             }
         }
@@ -65,10 +65,11 @@ export default class Author extends Component {
         const { blog } = this.props;
         const key = this.getKey();
         const feed = blog.feeds[key] ? blog.feeds[key] : {};
+        const name = this.getCurrentAuthor().name || '';
         return (
             <Feed
                 key={key}
-                title={'Author: ' + this.getCurrentAuthor().name}
+                title={'Author: ' + name}
                 feed={feed}
                 posts={blog.posts}
                 tags={blog.tags}
