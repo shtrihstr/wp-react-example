@@ -30,6 +30,8 @@ add_theme_support( 'title-tag' );
 add_image_size( 'react-thumbnail', 1600, 900, true );
 add_image_size( 'react-thumbnail-mob', 800, 450, true );
 
+add_filter( 'show_admin_bar', '__return_false' );
+
 
 /**
  * enqueue theme scripts

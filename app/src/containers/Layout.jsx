@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Sidebar from './Sidebar.jsx';
 
-export default class Layout extends Component {
+class Layout extends Component {
 
     render() {
         return (

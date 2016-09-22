@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { blogMaybeLoadCategories } from './../storage/actions/blog.jsx';
 import Link from './../components/Html/Link.jsx';
 
-export default class Sidebar extends Component {
+class Sidebar extends Component {
 
     componentWillMount() {
         const { dispatch } = this.props;

@@ -5,7 +5,7 @@ import Feed from './../components/Feed.jsx';
 
 import { blogMaybeLoadFeed, blogMaybeLoadCategories, blogMaybeLoadTags, blogMaybeLoadAuthors, blogMaybeLoadPost } from './../storage/actions/blog.jsx';
 
-export default class Category extends Component {
+class Category extends Component {
 
     componentWillMount() {
         const { dispatch } = this.props;

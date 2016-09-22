@@ -5,7 +5,7 @@ import Image from './../components/Html/Image.jsx';
 import Link from './../components/Html/Link.jsx';
 import Html from './../components/Html.jsx';
 
-export default class Post extends Component {
+class Post extends Component {
 
     componentWillMount() {
         const { onMountHandler } = this.props;

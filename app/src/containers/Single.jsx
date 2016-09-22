@@ -6,7 +6,7 @@ import Error from './../components/Error.jsx';
 
 import { blogMaybeLoadPost, blogMaybeLoadCategories, blogMaybeLoadTags, blogMaybeLoadAuthors, BLOG_LOADING_STATUS_ERROR } from './../storage/actions/blog.jsx';
 
-export default class Single extends Component {
+class Single extends Component {
 
     componentWillMount() {
         const { dispatch } = this.props;
